@@ -1,0 +1,102 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{ dialogTitle }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="roomForm" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="prixachat" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="roomForm.get('prixachat')?.hasError('required')">
+              Price is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status
+          </mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let row">
+            <span class="mobile-label">Status:</span>
+            @if (row.status==='Paid') {
+              <div>
+                      <span class="badge badge-solid-green">
+                        {{row.status}}</span>
+              </div>
+            }
+            @if (row.status==='Unpaid') {
+              <div>
+                      <span class="badge badge-solid-orange">
+                        {{row.status}}</span>
+              </div>
+            }
+          </mat-cell>
+        </ng-container>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Date of Purchase</mat-label>
+            <input matInput [matDatepicker]="datePicker" formControlName="dateachat" required>
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+            <mat-error *ngIf="roomForm.get('dateachat')?.hasError('required')">
+              Date of Purchase is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Date expiration date</mat-label>
+            <input matInput [matDatepicker]="datePicker" formControlName="expdate" required>
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+            <mat-error *ngIf="roomForm.get('expdate')?.hasError('required')">
+              Date of expiration is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Buyer</mat-label>
+            <input matInput formControlName="buyer" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>person</mat-icon>
+            <mat-error *ngIf="roomForm.get('buyer')?.hasError('required')">
+              Buyer is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Seller</mat-label>
+            <input matInput formControlName="seller" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>person_outline</mat-icon>
+            <mat-error *ngIf="roomForm.get('seller')?.hasError('required')">
+              Seller is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!roomForm.valid" (click)="confirmAdd()">Save</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

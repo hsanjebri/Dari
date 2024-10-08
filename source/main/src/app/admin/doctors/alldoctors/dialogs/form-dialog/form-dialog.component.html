@@ -1,0 +1,107 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <img [src]='doctors.img' alt="avatar">
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="doctorsForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+            @if (doctorsForm.get('name')?.hasError('required')) {
+            <mat-error>
+              Name is required
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>surface</mat-label>
+            <input matInput formControlName="surface" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>business_center</mat-icon>
+            @if (doctorsForm.get('surface')?.hasError('required')) {
+            <mat-error>
+              surface is required
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>description</mat-label>
+            <input matInput formControlName="description" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>flag</mat-icon>
+            @if (doctorsForm.get('description')?.hasError('required')) {
+            <mat-error>
+              description is required
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>address</mat-label>
+            <input matInput formControlName="adresse" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>address</mat-icon>
+            @if (doctorsForm.get('adresse')?.hasError('required')) {
+            <mat-error>
+              address is required
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" type="number">
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>phone</mat-icon>
+            @if (doctorsForm.get('mobile')?.hasError('required')) {
+            <mat-error>
+              Mobile is required
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>email</mat-icon>
+            @if (doctorsForm.get('email')?.hasError('required') || doctorsForm.get('email')?.touched) {
+            <mat-error>
+              Please enter a valid email address
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!doctorsForm.valid" [mat-dialog-close]="1"
+              (click)="confirmAdd()">Save</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

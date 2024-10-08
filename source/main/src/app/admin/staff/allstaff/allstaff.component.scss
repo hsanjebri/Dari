@@ -1,0 +1,24 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; // Adjust the gap as needed
+}
+
+mat-card {
+  width: 100%;
+  max-width: 400px; // Adjust as needed
+  margin-bottom: 16px; // Adjust as needed
+}
+
+mat-card-header {
+  background: #f5f5f5; // Adjust the background color as needed
+}
+
+mat-card-content {
+  padding: 16px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

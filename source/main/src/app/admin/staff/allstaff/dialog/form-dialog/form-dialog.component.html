@@ -1,0 +1,129 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="editRowModal">
+            <div class="modalHeader clearfix">
+                <div class="modal-about">
+                    {{dialogTitle}}
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="staffForm" (ngSubmit)="confirmAdd()">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                        <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+                        <mat-error *ngIf="staffForm.get('name').hasError('required')">
+                            Name is required
+                        </mat-error>
+                        <mat-error *ngIf="staffForm.get('name').hasError('pattern')">
+                            Name should only contain letters and spaces
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Agency</mat-label>
+                        <input matInput formControlName="agence">
+                        <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>business_center</mat-icon>
+                        <mat-error *ngIf="staffForm.get('agence').hasError('required')">
+                            Agency is required
+                        </mat-error>
+                        <mat-error *ngIf="staffForm.get('agence').hasError('pattern')">
+                            Agency should only contain letters and spaces
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Price</mat-label>
+                        <input matInput formControlName="prix" type="number">
+                        <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>attach_money</mat-icon>
+                        <mat-error *ngIf="staffForm.get('prix').hasError('required')">
+                            Price is required
+                        </mat-error>
+                        <mat-error *ngIf="staffForm.get('prix').hasError('pattern')">
+                            Invalid price format
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email">
+                        <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>email</mat-icon>
+                        <mat-error *ngIf="staffForm.get('email').hasError('required')">
+                            Email is required
+                        </mat-error>
+                        <mat-error *ngIf="staffForm.get('email').hasError('email')">
+                            Please enter a valid email address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="staffForm.get('date').hasError('required')">
+                            Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <textarea matInput formControlName="address"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                        <mat-error *ngIf="staffForm.get('description').hasError('maxLength')">
+                            Description cannot exceed 500 characters
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option value="LOCATION">LOCATION</mat-option>
+                  <mat-option value="VENTE">VENTE</mat-option>
+                </mat-select>
+                <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>label</mat-icon>
+                <!-- Removed mat-error for type -->
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" [type]="'submit'" [disabled]="!staffForm.valid">Save</button>
+                        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

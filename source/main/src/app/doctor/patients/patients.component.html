@@ -1,0 +1,73 @@
+  <section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Agent'" [items]="[]" [active_item]="'Agents list'"></app-breadcrumb>
+      </div>
+
+      <div class="row">
+        <!-- Loop through doctors array -->
+        <div *ngFor="let doctor of doctors" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+          <div class="card py-3 py-md-3">
+            <div class="d-flex justify-content-between px-3 px-md-4">
+              <img src="assets/images/user/usrbig1.jpg" height="40px" width="40px" alt="" class="rounded-circle">
+              <div>
+                <p class="col-green font-14 font-b-500"> Name :{{ doctor.name }}</p>
+                <p>Agent Id: {{ doctor.id }}</p>
+              </div>
+              <div>
+                <span class="ml-2"> Years Experience: {{ doctor.yearsOfExperience }}</span>
+                <p class="font-12">Gender: {{ doctor.gender }}</p>
+              </div>
+            </div>
+            <hr class="light-hr">
+            <div class="d-flex flex-column px-3 px-md-4">
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-map-marker-alt pt-3 psr-3"></i>
+                <span class="ml-2">Address: {{ doctor.address }}</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-phone pt-3 psr-3"></i>
+                <span class="ml-2">Mobile: {{ doctor.mobile }}</span>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <i class="fas fa-trophy pt-3 psr-3"></i>
+                <span class="ml-2">Max Goal: {{ doctor.maxgoal | currency:'USD':'symbol':'1.0-2' }}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <span style="font-size: 24px; padding-right: 8px;">🎯</span>
+                <span>Current Goal: {{ doctor.monthlygoal | currency:'USD':'symbol':'1.0-2' }}</span>
+              </div>
+              <div class="mt-3">
+                <p>Goal Achievement:</p>
+                <mat-progress-bar
+                  mode="determinate"
+                  [value]="getGoalPercentage(doctor.id)"
+                ></mat-progress-bar>
+                <p>{{ getGoalPercentage(doctor.id) | number:'1.0-2' }}%</p>
+              </div>
+            </div>
+            <hr class="light-hr">
+            <div class="d-flex justify-content-between px-3 px-md-4">
+              <div>
+                <div class="d-flex">
+                  <p class="psr-2">Agence:</p>
+                  <div class="font-weight-bold">{{ doctor.department }}</div>
+                </div>
+                <div class="d-flex">
+                  <p class="psr-2">Reports:</p>
+                  <div class="font-weight-bold">
+                    <i class="far fa-file-pdf col-red"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="light-hr">
+            <div class="d-flex justify-content-around px-4">
+              <button mat-stroked-button color="primary" (click)="updateMonthlyGoal(doctor.id)">update goal</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

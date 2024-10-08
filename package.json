@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@uploadcare/blocks": "^0.50.4"
+  }
+}
